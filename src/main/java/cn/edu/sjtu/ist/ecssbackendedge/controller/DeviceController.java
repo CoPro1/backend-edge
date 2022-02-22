@@ -48,6 +48,7 @@ public class DeviceController {
 
     @GetMapping(value = "")
     public Result<List<DeviceDTO>> getAllDevices() {
+        System.out.println(ResultUtil.success(deviceService.getAllDevices()));
         return ResultUtil.success(deviceService.getAllDevices());
     }
 }

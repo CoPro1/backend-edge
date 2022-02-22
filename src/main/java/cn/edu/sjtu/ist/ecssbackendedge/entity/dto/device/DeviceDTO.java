@@ -39,4 +39,13 @@ public class DeviceDTO {
      * 设备的数据项列表
      */
     private List<DataEntry> values;
+
+    /**
+     * @author zengyuxin
+     */
+
+    /**
+     *
+     */
+
 }
