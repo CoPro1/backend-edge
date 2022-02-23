@@ -20,6 +20,7 @@ public class DeviceUtil {
         res.setId(dto.getId());
         res.setName(dto.getName());
         res.setModel(dto.getModel());
+        res.setCredibility(dto.getCredibility());
         res.setCrafts(dto.getCrafts());
         res.setDescription(dto.getDescription());
         res.setValues(dto.getValues());
@@ -38,6 +39,7 @@ public class DeviceUtil {
         res.setId(domain.getId());
         res.setName(domain.getName());
         res.setModel(domain.getModel());
+        res.setCredibility(domain.getCredibility());
         res.setCrafts(domain.getCrafts());
         res.setDescription(domain.getDescription());
         res.setValues(domain.getValues());
@@ -56,6 +58,7 @@ public class DeviceUtil {
         res.setId(po.getId());
         res.setName(po.getName());
         res.setModel(po.getModel());
+        res.setCredibility(po.getCredibility());
         res.setCrafts(po.getCrafts());
         res.setDescription(po.getDescription());
         res.setValues(po.getValues());
@@ -74,6 +77,7 @@ public class DeviceUtil {
         res.setId(domain.getId());
         res.setName(domain.getName());
         res.setModel(domain.getModel());
+        res.setCredibility(domain.getCredibility());
         res.setCrafts(domain.getCrafts());
         res.setDescription(domain.getDescription());
         res.setValues(domain.getValues());

@@ -41,6 +41,13 @@ public class DevicePO {
     private String model;
 
     /**
+     * @author zengyuxin
+     * 设备信任度
+     */
+    @Field
+    private Integer credibility;
+
+    /**
      * 设备描述，可有可无
      */
     @Field

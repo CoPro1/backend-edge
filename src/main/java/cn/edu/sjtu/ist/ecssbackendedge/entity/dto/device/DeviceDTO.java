@@ -36,6 +36,12 @@ public class DeviceDTO {
 
     /**
      * @author zengyuxin
+     * 设备信任度
+     */
+    private Integer credibility;
+
+    /**
+     * @author zengyuxin
      * 工艺单元
      */
     private List<CraftUnitInfo> crafts;
