@@ -1,6 +1,7 @@
 package cn.edu.sjtu.ist.ecssbackendedge.service;
 
 import cn.edu.sjtu.ist.ecssbackendedge.entity.znew.CraftUnit;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -14,5 +15,7 @@ public interface CraftUnitService {
      CraftUnit findOne(Integer id);
 
      String addCraftUnit(String name);
+
+    String checkCraftUnit(@RequestBody List<String> craft);
 
 }

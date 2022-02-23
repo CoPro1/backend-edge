@@ -25,6 +25,12 @@ public class CraftUnitController {
         return craftUnitService.addCraftUnit(name);
     }
 
+    @PostMapping("checkCraftUnit")
+    public String checkCraftUnit(@RequestBody List<String> craft) {
+        System.out.println(craft);
+        return craftUnitService.checkCraftUnit(craft);
+    }
+
     @GetMapping(value = "/{id}")
     public CraftUnit findOne(@PathVariable Integer id) {
         return craftUnitService.findOne(id);
