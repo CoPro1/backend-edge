@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +26,15 @@ public class CraftUnitController {
         return craftUnitService.addCraftUnit(name);
     }
 
-    @PostMapping("checkCraftUnit")
+    @GetMapping(value = "checkCraftUnit/{name}")
+    public String checkOneCraftUnit(@PathVariable String name) {
+        System.out.println("controller"+name);
+        List<String> tmp = new ArrayList<>();
+        tmp.add(name);
+        return craftUnitService.checkCraftUnit(tmp);
+    }
+
+    @GetMapping ("checkCraftUnit")
     public String checkCraftUnit(@RequestBody List<String> craft) {
         System.out.println(craft);
         return craftUnitService.checkCraftUnit(craft);
