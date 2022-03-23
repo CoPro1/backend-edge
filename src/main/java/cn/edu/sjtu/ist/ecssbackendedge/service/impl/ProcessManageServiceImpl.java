@@ -6,6 +6,7 @@ import cn.edu.sjtu.ist.ecssbackendedge.entity.domain.processmanage.Step;
 import cn.edu.sjtu.ist.ecssbackendedge.entity.dto.ProcessManageDTO;
 import cn.edu.sjtu.ist.ecssbackendedge.service.ProcessManageService;
 import cn.edu.sjtu.ist.ecssbackendedge.utils.process.BpmnUtils;
+import cn.hutool.core.util.XmlUtil;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpEntity;
@@ -217,7 +218,8 @@ public class ProcessManageServiceImpl implements ProcessManageService {
             DocumentBuilder db = dbf.newDocumentBuilder();
             InputSource is = new InputSource(new StringReader(Bpmn));
             Document document = db.parse(is);
-            NodeList taskList = document.getElementsByTagName("bpmn2:task");
+            NodeList taskList = XmlUtil.getNodeListByXPath("//*[name()='bpmn2:task']", document);
+//            NodeList taskList = document.getElementsByTagName("bpmn2:task");
             int taskCnt = taskList.getLength();
             List<String> result = new ArrayList<>();
             for(int i = 0; i < taskCnt; i++) {
