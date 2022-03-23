@@ -4,6 +4,8 @@ import cn.edu.sjtu.ist.ecssbackendedge.entity.domain.processmanage.ProcessManage
 import cn.edu.sjtu.ist.ecssbackendedge.entity.domain.processmanage.Step;
 import cn.edu.sjtu.ist.ecssbackendedge.entity.dto.ProcessManageDTO;
 import org.springframework.web.multipart.MultipartFile;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 
 import java.util.List;
 
@@ -42,6 +44,8 @@ public interface ProcessManageService {
     List<ProcessManage> findOwnedProcesses(String owner);
 
     String findBpmn(String processId);
+
+    List<String> findBpmnEvents(String processId);
 
     Boolean issueProcess(String ip, String port, ProcessManageDTO processManageDTO);
 

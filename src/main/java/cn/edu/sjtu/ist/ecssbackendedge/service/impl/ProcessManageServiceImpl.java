@@ -24,7 +24,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import  org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+
 import java.io.IOException;
+import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -191,6 +204,46 @@ public class ProcessManageServiceImpl implements ProcessManageService {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    //TODO: 返回的顺序有问题，会按照task的放置顺序而不是连出来的顺序
+    @Override
+    public List<String> findBpmnEvents(String processId){
+        ProcessManage processManage = findProcess(processId);
+        String Bpmn  = processManage.getBpmn();
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            InputSource is = new InputSource(new StringReader(Bpmn));
+            Document document = db.parse(is);
+            NodeList taskList = document.getElementsByTagName("bpmn2:task");
+            int taskCnt = taskList.getLength();
+            List<String> result = new ArrayList<>();
+            for(int i = 0; i < taskCnt; i++) {
+                Node task = taskList.item(i);
+                NamedNodeMap attrs = task.getAttributes();
+                for(int j = 0; j < attrs.getLength(); j++) {
+                    Node attr = attrs.item(j);
+                    result.add(attr.getNodeValue());
+                }
+            }
+            List<String> strForDel = new ArrayList<>();
+            for(String str : result) {
+                if(str.contains("Activi")) {
+                    strForDel.add(str);
+                }
+            }
+            result.removeAll(strForDel);
+            return result;
+        }
+        catch (ParserConfigurationException e) {
+            throw new RuntimeException(e);
+        } catch (SAXException e) {
+            throw new RuntimeException(e);
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

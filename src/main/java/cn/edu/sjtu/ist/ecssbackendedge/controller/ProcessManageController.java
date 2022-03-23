@@ -16,8 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @brief 流程controller
@@ -120,6 +123,11 @@ public class ProcessManageController {
         return ResultUtil.success(processManageService.findBpmn(id));
     }
 
+    @GetMapping("/{id}/bpmn_events")
+    public List<String> findBpmnEvents(@PathVariable String id) {
+        return processManageService.findBpmnEvents(id);
+    }
+
     @PutMapping("/{id}/bpmn")
     public Result<?> updateBpmn(@PathVariable String id, @RequestParam("file") MultipartFile file) {
         processManageService.updateProcessBpmn(id, file);
@@ -138,5 +146,7 @@ public class ProcessManageController {
             return ResultUtil.failure("Fail to issue the process to edge end.", HttpStatus.EXPECTATION_FAILED.value());
         }
     }
+
+
 
 }
