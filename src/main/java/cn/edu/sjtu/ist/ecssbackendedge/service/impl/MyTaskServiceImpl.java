@@ -23,4 +23,9 @@ public class MyTaskServiceImpl implements MyTaskService {
     public void addMyTask(CloudTaskInfo myTask) {
         myTaskDao.addMyTask(myTask);
     }
+
+    @Override
+    public void updateTaskState(Integer id, Integer TaskState){
+        myTaskDao.updateTaskState(id, TaskState);
+    }
 }

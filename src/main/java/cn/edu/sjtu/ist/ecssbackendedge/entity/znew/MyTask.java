@@ -24,6 +24,12 @@ public class MyTask {
     private Integer id;
 
     /**
+     * 所属用户id
+     */
+    @Field
+    private Integer user_id;
+
+    /**
      * 云端任务id
      */
     @Field

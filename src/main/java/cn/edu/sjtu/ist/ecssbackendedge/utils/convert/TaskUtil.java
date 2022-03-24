@@ -15,6 +15,7 @@ public class TaskUtil {
     public CloudTaskInfo convertMT2CT(MyTask tmp) {
         CloudTaskInfo res = new CloudTaskInfo();
         res.setTask_id(tmp.getTask_id());
+        res.setUser_id(tmp.getUser_id());
         res.setPro_name(tmp.getPro_name());
         res.setTimes(tmp.getTimes());
         res.setDeadline(tmp.getDeadline());
@@ -26,6 +27,7 @@ public class TaskUtil {
     public MyTask convertCT2MT(CloudTaskInfo tmp) {
         MyTask res = new MyTask();
         res.setTask_id(tmp.getTask_id());
+        res.setUser_id(tmp.getUser_id());
         res.setPro_name(tmp.getPro_name());
         res.setTimes(tmp.getTimes());
         res.setDeadline(tmp.getDeadline());

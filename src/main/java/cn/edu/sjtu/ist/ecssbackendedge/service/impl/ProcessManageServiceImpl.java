@@ -219,7 +219,6 @@ public class ProcessManageServiceImpl implements ProcessManageService {
             InputSource is = new InputSource(new StringReader(Bpmn));
             Document document = db.parse(is);
             NodeList taskList = XmlUtil.getNodeListByXPath("//*[name()='bpmn2:task']", document);
-//            NodeList taskList = document.getElementsByTagName("bpmn2:task");
             int taskCnt = taskList.getLength();
             List<String> result = new ArrayList<>();
             for(int i = 0; i < taskCnt; i++) {

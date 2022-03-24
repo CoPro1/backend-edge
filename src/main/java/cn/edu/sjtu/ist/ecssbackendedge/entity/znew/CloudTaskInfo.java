@@ -13,6 +13,11 @@ public class CloudTaskInfo {
     private String task_id;
 
     /**
+     * 所属用户id
+     */
+    private Integer user_id;
+
+    /**
      * 边端流程名称
      */
     private String pro_name;

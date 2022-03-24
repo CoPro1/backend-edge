@@ -17,9 +17,6 @@ public class MyTaskDaoImpl implements MyTaskDao {
     @Autowired
     private MyTaskRepository myTaskRepository;
 
-//    @Autowired
-//    private TaskStateRepository taskStateRepository;
-
     @Autowired
     private TaskUtil taskUtil;
 
@@ -29,15 +26,6 @@ public class MyTaskDaoImpl implements MyTaskDao {
         return myTaskRepository.findAll();
     }
 
-//    @Override
-//    public List<MyTask> getMyTasks() {
-//        List<MyTask> res= myTaskRepository.getMyTasks();
-//        JSONArray jsonArray = new JSONArray();
-//        jsonArray.addAll(res);
-//        List<MyTaskRes> list = jsonArray.toJavaList(MyTaskRes.class);
-//        log.info(String.valueOf(list));
-//        return list;
-//    }
 
     @Override
     public void addMyTask(CloudTaskInfo cloudTaskInfo) {
@@ -45,5 +33,12 @@ public class MyTaskDaoImpl implements MyTaskDao {
         tmpTask.setState(0);
         log.info(String.valueOf(tmpTask));
         myTaskRepository.save(tmpTask);
+    }
+
+    @Override
+    public void updateTaskState(Integer id, Integer TaskState){
+        MyTask tmp = myTaskRepository.getById(id);
+        tmp.setState(TaskState);
+        myTaskRepository.save(tmp);
     }
 }

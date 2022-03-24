@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -29,17 +30,6 @@ public class MyTaskController {
         return res;
     }
 
-//    /**
-//     * 获取所有任务及其状态
-//     * @return List<MyTaskRes>
-//     */
-//    @GetMapping(value = "state")
-//    public List<MyTaskRes> getMyTasks() {
-//        List<MyTaskRes> res = myTaskService.getMyTasks();
-//        log.info(String.valueOf(res));
-//        return res;
-//    }
-
     /**
      * 添加任务
      */
@@ -50,4 +40,14 @@ public class MyTaskController {
         return ResultUtil.success();
     }
 
+    /**
+     * 添加任务
+     */
+    @PostMapping(value = "updateState")
+    public Result<?> updateTaskState(@RequestBody Map<String, Integer> paramsMap) {
+        Integer id = paramsMap.get("id");
+        Integer taskState = paramsMap.get("newState");
+        myTaskService.updateTaskState(id, taskState);
+        return ResultUtil.success();
+    }
 }
