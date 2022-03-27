@@ -46,6 +46,7 @@ public class DeviceDaoImpl implements DeviceDao {
         DevicePO devicePO = deviceRepository.findDeviceById(device.getId());
         if (devicePO != null) {
             devicePO = deviceUtil.convertDomain2PO(device);
+            System.out.println(devicePO);
             deviceRepository.save(devicePO);
         }
     }
