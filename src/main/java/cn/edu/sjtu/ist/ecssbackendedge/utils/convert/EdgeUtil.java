@@ -12,27 +12,6 @@ public class EdgeUtil {
 
     @Autowired
     private CollectSchedulerUtil collectSchedulerUtil;
-
-    // public Edge convertDTO2Domain(EdgeDTO dto) {
-    //     Edge res = new Edge();
-    //     res.setId(dto.getId());
-    //     res.setName(dto.getName());
-    //     res.setModel(dto.getModel());
-    //     res.setDescription(dto.getDescription());
-    //     res.setValues(dto.getValues());
-    //     return res;
-    // }
-
-    // public EdgeDTO convertDomain2DTO(Edge domain) {
-    //     EdgeDTO res = new EdgeDTO();
-    //     res.setId(domain.getId());
-    //     res.setName(domain.getName());
-    //     res.setModel(domain.getModel());
-    //     res.setDescription(domain.getDescription());
-    //     res.setValues(domain.getValues());
-    //     return res;
-    // }
-
     public Edge convertPO2Domain(EdgePO po) {
         Edge res = new Edge();
         res.setId(po.getId());

@@ -60,10 +60,8 @@ public class ConnectCloudUtil {
             if (responseEntity != null) {
                 // 将响应内容转换为字符串
                 String result = EntityUtils.toString(responseEntity, StandardCharsets.UTF_8);
-                log.info(result);
             }
         } catch (IOException e) {
-            log.info("报错");
         }
     }
 }

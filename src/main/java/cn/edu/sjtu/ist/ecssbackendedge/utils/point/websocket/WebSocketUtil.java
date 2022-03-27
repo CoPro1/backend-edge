@@ -35,7 +35,7 @@ public class WebSocketUtil {
         try {
             MyWebSocketClient client = webSocketClientConfig.getClient(id, uri);
         } catch (URISyntaxException e) {
-            log.error(e.getMessage());
+//            log.error(e.getMessage());
         }
     }
 

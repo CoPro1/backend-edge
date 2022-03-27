@@ -50,7 +50,6 @@ public class PackageUtil {
         try {
             File tmp = new File("");
             String filepath = String.format("%s%s%s.xlsx", tmp.getCanonicalPath(), exportPath, filename);
-            log.info(String.format("Filepath: %s", filepath));
             return filepath;
         } catch (IOException e) {
             throw new RuntimeException("根据自定义名称返回文件路径失败", e);

@@ -46,3 +46,24 @@ INSERT INTO `my_task` VALUES (1,1,'43534disuse34','边端工艺1','100','2020-01
                              (7,1,'43534disuse37','边端工艺7','100','2020-01-18 09:53:32','2020-01-19 9:53:32','edge2','1','简单的任务描述1'),
                              (8,1,'dsf234d3466s5','边端工艺8','10','2020-01-19 09:53:32','2020-01-20 09:53:32','edge3','2','简单的任务描述2'),
                              (9,1,'fds345err4543','边端工艺9','20','2020-01-20 09:53:32','2020-01-21 09:53:32','edge4','3','简单的任务描述3');
+
+DROP TABLE IF EXISTS `log_operation`;
+CREATE TABLE `log_operation` (
+                           `id` int(11)  AUTO_INCREMENT,
+                           `op_user_account` int(11) DEFAULT NULL,
+                           `op_user_name` varchar(255) DEFAULT NULL,
+                           `op_category` varchar(255) DEFAULT NULL,
+                           `op_sub_category` varchar(255) DEFAULT NULL,
+                           `op_type` int(11) DEFAULT NULL,
+                           `op_desc` varchar(255) DEFAULT NULL,
+                           `op_param` text DEFAULT NULL,
+                           `op_result` varchar(255) DEFAULT NULL,
+                           `op_method` varchar(255) DEFAULT NULL,
+                           `op_cost` int(11) DEFAULT NULL,
+                           `op_uri` varchar(255) DEFAULT NULL,
+                           `op_ip` varchar(255) DEFAULT NULL,
+                           `op_extend` text DEFAULT NULL,
+                           `create_time` datetime(0) DEFAULT NULL,
+                           PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
