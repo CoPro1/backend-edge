@@ -11,6 +11,7 @@ import cn.edu.sjtu.ist.ecssbackendedge.utils.convert.ProcessManageUtil;
 import cn.edu.sjtu.ist.ecssbackendedge.utils.process.BpmnUtils;
 import cn.edu.sjtu.ist.ecssbackendedge.utils.response.Result;
 import cn.edu.sjtu.ist.ecssbackendedge.utils.response.ResultUtil;
+import com.github.yeecode.objectlogger.client.service.LogClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -39,6 +41,9 @@ public class ProcessManageController {
     @Autowired
     private ProcessManageUtil processManageUtil;
 
+    @Autowired
+    private LogClient logClient;
+
     @PostMapping(value = "")
     public Result<?> insertProcessWithFile(@ModelAttribute ProcessManageRequest request) {
         String name = request.getName();
@@ -52,6 +57,18 @@ public class ProcessManageController {
         dto.setStep(Step.BPMN);
         dto.setStatus(Status.CONSTRUCTING);
         dto.setFlag(true);
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
+        Date date = new Date(System.currentTimeMillis());
+        System.out.println(formatter.format(date));
+        logClient.logAttributes(
+                "新增流程",
+                "工艺流程",
+                "EdgeManager-9532",
+                "add",
+                "新增工艺流程 【" + name +"】",
+                formatter.format(date),
+                "新增工艺流程 【" + name +"】",
+                null);
         ProcessManage processManage = processManageUtil.convertDTO2Domain(dto);
         try {
             return ResultUtil.success(processManageService.insertProcess(processManage));
@@ -63,12 +80,36 @@ public class ProcessManageController {
 
     @DeleteMapping(value = "/{id}")
     public Result<?> deleteProcess(@PathVariable String id) {
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
+        Date date = new Date(System.currentTimeMillis());
+        System.out.println(formatter.format(date));
+        logClient.logAttributes(
+                "删除流程",
+                "工艺流程",
+                "EdgeManager-9532",
+                "add",
+                "删除工艺流程 【" + id +"】",
+                formatter.format(date),
+                "删除工艺流程 【" + id +"】",
+                null);
         processManageService.deleteProcess(id);
         return ResultUtil.success();
     }
 
     @PostMapping(value = "/ban/{id}")
     public Result<?> banProcess(@PathVariable String id) {
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
+        Date date = new Date(System.currentTimeMillis());
+        System.out.println(formatter.format(date));
+        logClient.logAttributes(
+                "禁用流程",
+                "工艺流程",
+                "EdgeManager-9532",
+                "add",
+                "禁用工艺流程 【" + id +"】",
+                formatter.format(date),
+                "禁用工艺流程 【" + id +"】",
+                null);
         processManageService.banProcess(id);
         return ResultUtil.success();
     }
@@ -76,6 +117,18 @@ public class ProcessManageController {
     @PostMapping(value = "/enable/{id}")
     public Result<?> enableProcess(@PathVariable String id) {
         processManageService.enableProcess(id);
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
+        Date date = new Date(System.currentTimeMillis());
+        System.out.println(formatter.format(date));
+        logClient.logAttributes(
+                "启用流程",
+                "工艺流程",
+                "EdgeManager-9532",
+                "add",
+                "启用工艺流程 【" + id +"】",
+                formatter.format(date),
+                "启用工艺流程 【" + id +"】",
+                null);
         return ResultUtil.success();
     }
 
@@ -83,6 +136,18 @@ public class ProcessManageController {
     public Result<?> updateProcess(@PathVariable String id, @RequestBody ProcessManageDTO dto) {
         ProcessManage processManage = processManageUtil.convertDTO2Domain(dto);
         processManageService.updateProcess(id, processManage);
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
+        Date date = new Date(System.currentTimeMillis());
+        System.out.println(formatter.format(date));
+        logClient.logAttributes(
+                "更新流程",
+                "工艺流程",
+                "EdgeManager-9532",
+                "add",
+                "更新工艺流程 【" + id +"】",
+                formatter.format(date),
+                "更新工艺流程 【" + id +"】",
+                null);
         return ResultUtil.success();
     }
 

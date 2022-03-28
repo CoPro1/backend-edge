@@ -5,6 +5,7 @@ import cn.edu.sjtu.ist.ecssbackendedge.service.DeviceDataService;
 import cn.edu.sjtu.ist.ecssbackendedge.utils.response.Result;
 import cn.edu.sjtu.ist.ecssbackendedge.utils.response.ResultUtil;
 
+import com.github.yeecode.objectlogger.client.service.LogClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +23,9 @@ public class DeviceDataController {
 
     @Autowired
     private DeviceDataService deviceDataService;
+
+    @Autowired
+    private LogClient logClient;
 
     @PostMapping(value = "")
     public Result insertDeviceData(@RequestBody DeviceDataDTO deviceDataDTO) {

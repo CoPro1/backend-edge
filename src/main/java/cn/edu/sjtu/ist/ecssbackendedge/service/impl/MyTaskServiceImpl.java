@@ -25,7 +25,12 @@ public class MyTaskServiceImpl implements MyTaskService {
     }
 
     @Override
-    public void updateTaskState(Integer id, Integer TaskState){
-        myTaskDao.updateTaskState(id, TaskState);
+    public Integer updateTaskState(Integer id, Integer TaskState){
+        return myTaskDao.updateTaskState(id, TaskState);
+    }
+
+    @Override
+    public  MyTask findById(Integer id){
+        return myTaskDao.findById(id);
     }
 }

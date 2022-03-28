@@ -10,6 +10,8 @@ public interface MyTaskService {
 
     void addMyTask(CloudTaskInfo myTask);
 
-    void updateTaskState(Integer id, Integer TaskState);
+    MyTask findById(Integer id);
+
+    Integer updateTaskState(Integer id, Integer TaskState);
 
 }

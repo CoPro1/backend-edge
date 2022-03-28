@@ -36,9 +36,17 @@ public class MyTaskDaoImpl implements MyTaskDao {
     }
 
     @Override
-    public void updateTaskState(Integer id, Integer TaskState){
+    public Integer updateTaskState(Integer id, Integer TaskState){
         MyTask tmp = myTaskRepository.getById(id);
+        Integer old = tmp.getState();
         tmp.setState(TaskState);
         myTaskRepository.save(tmp);
+        return old;
+    }
+
+    @Override
+    public MyTask findById(Integer id){
+        MyTask tmp = myTaskRepository.getById(id);
+        return tmp;
     }
 }

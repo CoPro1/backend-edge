@@ -10,7 +10,9 @@ public interface MyTaskDao {
 
     void addMyTask(CloudTaskInfo myTask);
 
-    void updateTaskState(Integer id, Integer TaskState);
+    Integer updateTaskState(Integer id, Integer TaskState);
+
+    MyTask findById(Integer id);
 
 //    List<MyTask> getMyTasks();
 }
