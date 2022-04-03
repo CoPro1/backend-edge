@@ -33,24 +33,30 @@ public class ModbusUtil {
         if (slaveId != null) this.slaveId = slaveId;
         String type = "integer";
         ModbusMaster modbusMaster = modbusConfig.getMaster(id, ip, port);
+        System.out.println("modbusMaster is " + modbusMaster);
         switch (modbusFunction) {
             case COIL_STATUS:
                 BaseLocator<Boolean> coilLocator = BaseLocator.coilStatus(this.slaveId, offset);
                 Boolean coilValue = modbusMaster.getValue(coilLocator);
+                System.out.println("coilValue is " + coilValue);
                 return String.valueOf(coilValue);
             case INPUT_STATUS:
                 BaseLocator<Boolean> inputLocator = BaseLocator.inputStatus(this.slaveId, offset);
                 Boolean inputStatusValue = modbusMaster.getValue(inputLocator);
+                System.out.println("inputStatusValue is " +inputStatusValue);
                 return String.valueOf(inputStatusValue);
             case HOLDING_REGISTER:
                 BaseLocator<Number> holdingLocator = BaseLocator.holdingRegister(this.slaveId, offset, getValueType(type));
                 Number holdingValue = modbusMaster.getValue(holdingLocator);
+                System.out.println( "holdingLocator is " +   holdingLocator);
                 return String.valueOf(holdingValue);
             case INPUT_REGISTER:
                 BaseLocator<Number> inputRegister = BaseLocator.inputRegister(this.slaveId, offset, getValueType(type));
                 Number inputRegisterValue = modbusMaster.getValue(inputRegister);
+                System.out.println("inputRegisterValue is " +  inputRegisterValue);
                 return String.valueOf(inputRegisterValue);
             default:
+                System.out.println("default");
                 break;
         }
         return null;

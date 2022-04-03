@@ -33,7 +33,7 @@ public class DeviceController {
 
     @PostMapping(value = "")
     public Result<DeviceDTO> insertDevice(@RequestBody DeviceDTO deviceDTO) {
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss:SSS");
         Date date = new Date(System.currentTimeMillis());
         System.out.println(formatter.format(date));
         logClient.logAttributes(
@@ -51,7 +51,7 @@ public class DeviceController {
     @DeleteMapping(value = "/{id}")
     public Result deleteDevice(@PathVariable String id) {
         DeviceDTO tmp = deviceService.getDevice(id);
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss:SSS");
         Date date = new Date(System.currentTimeMillis());
         System.out.println(formatter.format(date));
         logClient.logAttributes(
@@ -59,7 +59,7 @@ public class DeviceController {
                 "设备信息",
                 "EdgeManager-9528",
                 "add",
-                "新增设备 【" + tmp.getName() +"】",
+                "删除设备 【" + tmp.getName() +"】",
                 formatter.format(date),
                 "设备信息 【" + tmp +"】",
                 null);
@@ -69,11 +69,11 @@ public class DeviceController {
 
     @PutMapping(value = "/{id}")
     public Result<DeviceDTO> updateDevice(@PathVariable String id, @RequestBody DeviceDTO deviceDTO) {
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss:SSS");
         Date date = new Date(System.currentTimeMillis());
         System.out.println(formatter.format(date));
         logClient.logAttributes(
-                "删除设备",
+                "更新设备",
                 "设备信息",
                 "EdgeManager-9528",
                 "add",

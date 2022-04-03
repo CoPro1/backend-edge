@@ -60,7 +60,8 @@ public class Sensor {
     }
 
     private String collectData() {
-        Assert.isTrue(this.status == Status.RUNNING || this.status == Status.SUCCESS, "该sensor目前状态异常");
+        System.out.println(this.status);
+        // Assert.isTrue(this.status == Status.RUNNING || this.status == Status.SUCCESS, "该sensor目前状态异常");
         log.info("开始采集数据项{}", this.name);
         updateStatus(Status.COLLECTING);
 
@@ -107,6 +108,9 @@ public class Sensor {
         @Override
         public void execute(JobExecutionContext context) {
             String collectedData = sensor.collectData();
+            System.out.println("sensor sensor.deviceId = " + sensor.deviceId);
+            System.out.println("sensor data = " + collectedData);
+            System.out.println("sensor sensor.name = " + sensor.name);
             if (collectedData != null && !collectedData.equals("null") && !collectedData.equals(AsynDataStatus.WAITING_DATA.getDataStatus())) {
                 // TODO 保存数据的方式有待商榷
                 sensor.deviceDataDao.saveDeviceData(sensor.deviceId, sensor.name, collectedData);
