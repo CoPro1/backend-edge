@@ -33,6 +33,8 @@ public interface ProcessManageService {
 
     List<ProcessManage> getAllProcesses();
 
+    List<ProcessManage> findProcessByName(String name);
+
     void updateProcessBpmn(String processId, MultipartFile file);
 
     void updateProcessStep(String processId, Step step);

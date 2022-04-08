@@ -3,15 +3,18 @@ package cn.edu.sjtu.ist.ecssbackendedge.controller;
 import cn.edu.sjtu.ist.ecssbackendedge.entity.znew.CloudTaskInfo;
 import cn.edu.sjtu.ist.ecssbackendedge.entity.znew.MyTask;
 import cn.edu.sjtu.ist.ecssbackendedge.service.MyTaskService;
+import cn.edu.sjtu.ist.ecssbackendedge.service.ProcessManageService;
 import cn.edu.sjtu.ist.ecssbackendedge.utils.response.Result;
 import cn.edu.sjtu.ist.ecssbackendedge.utils.response.ResultUtil;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import cn.edu.sjtu.ist.ecssbackendedge.entity.domain.processmanage.ProcessManage;
 import com.github.yeecode.objectlogger.client.service.LogClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +28,25 @@ public class MyTaskController {
 
     @Autowired
     private LogClient logClient;
+
+    @Autowired
+    private ProcessManageService processManageService;
+
+    /**
+     * 获取所有能做任务的端设备
+     * @return List<String>
+     */
+    @GetMapping(value = "getDeviceListByProName/{name}")
+    public List<String> getDeviceListByProName(@PathVariable String name) {
+        List<ProcessManage> processManages = processManageService.findProcessByName(name);
+        List<String> res = new ArrayList<>();
+        for(ProcessManage process : processManages) {
+            res.addAll(process.getCraft_list());
+        }
+        log.info(String.valueOf(res));
+        return res;
+    }
+
 
     /**
      * 获取所有任务

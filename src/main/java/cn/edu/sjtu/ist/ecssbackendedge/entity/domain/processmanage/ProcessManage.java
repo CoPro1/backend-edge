@@ -4,8 +4,10 @@ import cn.edu.sjtu.ist.ecssbackendedge.entity.domain.processmanage.proxy.BpmnMod
 import cn.edu.sjtu.ist.ecssbackendedge.utils.process.BpmnUtils;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @brief 流程领域模型
@@ -35,6 +37,8 @@ public class ProcessManage {
     private Status status = Status.CONSTRUCTING;
 
     private Boolean flag;
+
+    private List<String> craft_list;
 
     public void verifySelf() {
         BpmnModelProxy bpmnModelProxy = BpmnModelProxy.fromStream(BpmnUtils.strToInStream(this.bpmn));

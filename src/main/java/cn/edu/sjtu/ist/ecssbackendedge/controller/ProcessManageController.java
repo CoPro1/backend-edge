@@ -21,6 +21,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -57,6 +58,7 @@ public class ProcessManageController {
         dto.setStep(Step.BPMN);
         dto.setStatus(Status.CONSTRUCTING);
         dto.setFlag(true);
+        dto.setCraft_list(new ArrayList<>());
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
         Date date = new Date(System.currentTimeMillis());
         System.out.println(formatter.format(date));
@@ -186,6 +188,11 @@ public class ProcessManageController {
     @GetMapping("/{id}/bpmn")
     public Result<String> findBpmn(@PathVariable String id) {
         return ResultUtil.success(processManageService.findBpmn(id));
+    }
+
+    @GetMapping("/name/{name}")
+    public Result<?> getProcessByName(@PathVariable String name) {
+        return ResultUtil.success(processManageService.findProcessByName(name).get(0));
     }
 
     @GetMapping("/{id}/bpmn_events")

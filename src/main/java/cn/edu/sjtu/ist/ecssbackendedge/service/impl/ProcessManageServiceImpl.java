@@ -65,6 +65,10 @@ public class ProcessManageServiceImpl implements ProcessManageService {
         return processManageDao.findProcessByName(processManage.getName()).get(0);
     }
 
+    @Override public List<ProcessManage> findProcessByName(String name) {
+        return processManageDao.findProcessByName(name);
+    }
+
     @Override
     public ProcessManage insertProcessWithFile(ProcessManage processManage, MultipartFile file) {
         String bpmn = BpmnUtils.multiFileToStr(file);

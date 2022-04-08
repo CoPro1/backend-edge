@@ -4,8 +4,10 @@ import cn.edu.sjtu.ist.ecssbackendedge.entity.domain.processmanage.Status;
 import cn.edu.sjtu.ist.ecssbackendedge.entity.domain.processmanage.Step;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @brief 流程 dto
@@ -32,4 +34,6 @@ public class ProcessManageDTO {
     private Status status;
 
     private Boolean flag;
+
+    private List<String> craft_list;
 }

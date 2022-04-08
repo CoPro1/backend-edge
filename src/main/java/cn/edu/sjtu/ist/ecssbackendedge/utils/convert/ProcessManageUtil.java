@@ -25,6 +25,7 @@ public class ProcessManageUtil {
         res.setStep(dto.getStep());
         res.setStatus(dto.getStatus());
         res.setFlag(dto.getFlag());
+        res.setCraft_list(dto.getCraft_list());
         res.setCreatedTime(dto.getCreatedTime() == null ? new Date() : dto.getCreatedTime());
         return res;
     }
@@ -38,6 +39,7 @@ public class ProcessManageUtil {
         res.setStep(domain.getStep());
         res.setStatus(domain.getStatus());
         res.setFlag(domain.getFlag());
+        res.setCraft_list(domain.getCraft_list());
         res.setCreatedTime(domain.getCreatedTime() == null ? new Date() : domain.getCreatedTime());
         return res;
     }
@@ -51,6 +53,7 @@ public class ProcessManageUtil {
         res.setStep(po.getStep());
         res.setStatus(po.getStatus());
         res.setFlag(po.getFlag());
+        res.setCraft_list(po.getCraft_list());
         res.setCreatedTime(po.getCreatedTime() == null ? new Date() : po.getCreatedTime());
         return res;
     }
@@ -64,6 +67,7 @@ public class ProcessManageUtil {
         res.setStep(domain.getStep());
         res.setStatus(domain.getStatus());
         res.setFlag(domain.getFlag());
+        res.setCraft_list(domain.getCraft_list());
         res.setCreatedTime(domain.getCreatedTime() == null ? new Date() : domain.getCreatedTime());
         return res;
     }

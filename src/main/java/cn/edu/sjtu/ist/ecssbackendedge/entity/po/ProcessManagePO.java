@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.Id;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @brief 流程 po
@@ -44,4 +45,7 @@ public class ProcessManagePO {
 
     @Field
     private Boolean flag;
+
+    @Field
+    private List<String> craft_list;
 }
