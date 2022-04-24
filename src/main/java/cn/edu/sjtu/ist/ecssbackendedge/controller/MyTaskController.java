@@ -1,12 +1,16 @@
 package cn.edu.sjtu.ist.ecssbackendedge.controller;
 
+import cn.edu.sjtu.ist.ecssbackendedge.entity.dto.device.DeviceDTO;
 import cn.edu.sjtu.ist.ecssbackendedge.entity.znew.CloudTaskInfo;
 import cn.edu.sjtu.ist.ecssbackendedge.entity.znew.MyTask;
+import cn.edu.sjtu.ist.ecssbackendedge.entity.znew.ProcessDevice;
+import cn.edu.sjtu.ist.ecssbackendedge.entity.znew.TaskCraft;
+import cn.edu.sjtu.ist.ecssbackendedge.service.DeviceService;
 import cn.edu.sjtu.ist.ecssbackendedge.service.MyTaskService;
+import cn.edu.sjtu.ist.ecssbackendedge.service.ProcessDeviceService;
 import cn.edu.sjtu.ist.ecssbackendedge.service.ProcessManageService;
 import cn.edu.sjtu.ist.ecssbackendedge.utils.response.Result;
 import cn.edu.sjtu.ist.ecssbackendedge.utils.response.ResultUtil;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import cn.edu.sjtu.ist.ecssbackendedge.entity.domain.processmanage.ProcessManage;
 import com.github.yeecode.objectlogger.client.service.LogClient;
 import lombok.extern.slf4j.Slf4j;
@@ -14,10 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Slf4j
 @RestController
@@ -31,6 +32,12 @@ public class MyTaskController {
 
     @Autowired
     private ProcessManageService processManageService;
+
+    @Autowired
+    private ProcessDeviceService processDeviceService;
+
+    @Autowired
+    private DeviceService deviceService;
 
     /**
      * 获取所有能做任务的端设备
@@ -47,6 +54,18 @@ public class MyTaskController {
         return res;
     }
 
+    @GetMapping(value = "getTaskCraftList")
+    public List<TaskCraft> getTaskCraftList() {
+        List<ProcessManage> processManages = processManageService.getAllProcesses();
+        List<TaskCraft> res = new ArrayList<>();
+        for(ProcessManage process : processManages) {
+            TaskCraft tmp = new TaskCraft();
+            tmp.setName(process.getName());
+            tmp.setCraft_list(process.getCraft_list());
+            res.add(tmp);
+        }
+        return res;
+    }
 
     /**
      * 获取所有任务

@@ -32,6 +32,12 @@ public class ProcessDeviceController {
         return ResultUtil.success(processDeviceService.findAll());
     }
 
+//    @GetMapping(value = "for-show")
+//    public Result<?> findAllInformationNeeded() {
+//
+//    }
+
+
     @GetMapping(value = "/name/{name}")
     public Result<?> findByCraftName(@PathVariable String name) {
         ProcessDevice processDevice = processDeviceService.findByCraftName(name);
